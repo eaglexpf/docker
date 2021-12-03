@@ -6,7 +6,6 @@ ENV TIMEZONE=${timezone:-"Asia/Shanghai"}
 
 ADD zend_loader/opcache.so /usr/local/lib/php/extensions/no-debug-non-zts-20131226/
 ADD zend_loader/ZendGuardLoader.so /usr/local/lib/php/extensions/no-debug-non-zts-20131226/
-ADD zend_loader/developer.zl /zend_loader/license/
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
