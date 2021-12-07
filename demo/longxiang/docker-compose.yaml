@@ -4,9 +4,10 @@ services:
   demo-php:
     container_name: demo-php
     image: nasus/php:php56-zendguardloader-dev
+    environment:
+      LICENSE_PATH: ${license_path}
     volumes:
       - ./lxtx:/var/www/html
-      - ./config/license:/zend_loader/license
     ports:
       - 80:80
   demo-redis:
@@ -20,7 +21,7 @@ services:
     container_name: demo-mysql
     image: nasus/mysql-x86:5.6
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: ${mysql_root_password}
     volumes:
       - ./cache/mysql:/var/lib/mysql
       - ./config/initdb.d:/docker-entrypoint-initdb.d
