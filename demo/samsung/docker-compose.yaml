@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  demo-php:
+    container_name: demo-php
+    image: nasus/php:php72-swooleloader-dev
+    environment:
+      LICENSE_PATH: ${license_path}
+    volumes:
+      - ./espier-bloated:/var/www/html
+    ports:
+      - 80:80
+  demo-redis:
+    container_name: demo-redis
+    image: redis
+    volumes:
+      - ./cache/redis:/data
+    ports:
+      - 6379:6379
+  demo-mysql:
+    container_name: demo-mysql
+    image: nasus/mysql-x86:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${mysql_root_password}
+    volumes:
+      - ./cache/mysql:/var/lib/mysql
+      - ./config/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
