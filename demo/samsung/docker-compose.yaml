@@ -10,6 +10,15 @@ services:
       - ./espier-bloated:/var/www/html
     ports:
       - 80:80
+  demo-node:
+    container_name: demo-node
+    image: node:lts-alpine
+    volumes:
+      - ./espier-retail-manage/app:/app
+      - ./config/node/sh:/sh
+    command: sh -c /sh/node.sh
+    ports:
+      - 8888:8888
   demo-redis:
     container_name: demo-redis
     image: redis

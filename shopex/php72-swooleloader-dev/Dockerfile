@@ -45,6 +45,6 @@ ADD conf/default.conf /etc/nginx/conf.d/default.conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ADD sh/start.sh /shopex/start.sh
-RUN chmod +x /shopex/start.sh
-CMD ["/shopex/start.sh"]
+ADD sh/ /sh/
+RUN chmod -R +x /sh
+CMD ["/sh/start.sh"]

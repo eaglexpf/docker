@@ -9,8 +9,4 @@ else
     echo "don't have license_path"
 fi
 
-echo "init"
-chown -R www-data:www-data /var/www/html 
-echo "success"
-
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
