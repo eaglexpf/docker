@@ -11,7 +11,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 
 # 使用 阿里源 替换
 RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
-    && sed -i "s@http://security.debian.org/@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
+    && sed -i "s@http://security.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
     && rm -rf /var/lib/apt/lists/* && apt update && apt install -y nginx cron supervisor git vim
     
 # install php extensions
