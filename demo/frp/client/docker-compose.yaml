@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  frpc:
+    container_name: frpc
+    image: nasus/frpc:0.39.1
+    volumes:
+      - ./frpc.ini:/etc/frp/frpc.ini
+
+networks:
+  default:
+    external:
+      name: basic_host
