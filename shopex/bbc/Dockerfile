@@ -46,4 +46,4 @@ ADD conf/default.conf /etc/nginx/conf.d/default.conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-CMD chown -R www-data:www-data /var/www/html && /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+CMD /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
