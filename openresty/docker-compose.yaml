@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  nasus-openresty:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: nasus/openresty:alpine
+    container_name: nasus-openresty
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./lua:/usr/local/openresty/nginx/conf/lua
+      - ./conf.d:/usr/local/openresty/nginx/conf/conf.d
+    command: /bin/bash -c "echo 'hello world' > /listen.txt && tail -f /listen.txt"
+networks:
+  default:
+    external:
+      name: basic_host
