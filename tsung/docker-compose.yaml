@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  nasus-tsung:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: nasus/tsung:1.7.0
+    container_name: nasus-tsung
+    ports:
+      - 80:80
+    volumes:
+      - ./tsung.sh:/root/.tsung/tsung.sh:ro
+      - ./tsung.xml:/root/.tsung/tsung.xml:ro
+networks:
+  default:
+    external:
+      name: basic_host
