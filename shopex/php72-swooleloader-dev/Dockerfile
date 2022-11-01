@@ -19,7 +19,7 @@ RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/source
     
 # install php extensions
 RUN install-php-extensions bcmath gd gettext mcrypt mysqli redis memcached pcntl \
-    pdo_mysql shmop soap sockets sysvsem zip \
+    pdo_mysql shmop soap sockets sysvsem zip mongodb \
     #  ---------- some config ----------
     && cd /usr/local/etc/php \
     # - config PHP
