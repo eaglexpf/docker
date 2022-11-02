@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:4
+    environment:
+      MONGO_INITDB_DATABASE: yapi
+    volumes:
+      - ./cache/db:/data/db
+  yapi:
+    container_name: yapi
+    image: nasus/yapi
+    ports: 
+      - 9090:9090
+      - 3000:3000
+    volumes:
+      - ./cache/yapi:/my-yapi
+      - ./run.sh:/run.sh
+    command: /bin/bash -c "chmod -R +x /run.sh && /run.sh"
