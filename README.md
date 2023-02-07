@@ -19,3 +19,12 @@ RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/source
     && sed -i "s@http://security.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list \
     && rm -rf /var/lib/apt/lists/* && apt update
 ```
+
+```
+docker login
+
+docker build -t [name] .
+docker push [name]
+
+docker run -it [name] /bin/bash
+```
