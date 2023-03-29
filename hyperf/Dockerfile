@@ -50,6 +50,7 @@ RUN set -ex \
     php81-opcache \
     php81-pecl-redis \
     php81-pecl-memcached \
+    php81-pecl-mongodb \
     php81-pecl-swoole \
     && ln -sf /usr/bin/php81 /usr/bin/php \
     && apk del --purge *-dev \
