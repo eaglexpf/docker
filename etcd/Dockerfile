@@ -25,3 +25,7 @@ ENV TIMEZONE=${timezone:-"Asia/Shanghai"} \
 COPY --from=build-stage /etcd-${ETCD_VERSION}/bin/* /usr/local/bin
 
 RUN export PATH="$PATH:/usr/local/etcd"
+
+EXPOSE 2379 2380
+
+CMD etcd
