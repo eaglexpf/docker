@@ -64,14 +64,10 @@ RUN set -ex \
         echo "post_max_size=128M"; \
         echo "memory_limit=1G"; \
         echo "date.timezone=${TIMEZONE}"; \
+        echo "opcache.enable_cli = 'On'"; \
+        echo "swoole.use_shortname = 'Off'"; \
     } | tee /etc/php81/conf.d/00_customize.ini \
-    && echo "opcache.enable_cli = 'On'" >> /etc/php81/conf.d/00_customize.ini \
-    && echo "swoole.use_shortname = 'Off'" >> /etc/php81/conf.d/00_customize.ini \
 
     # - config timezone
     && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo "${TIMEZONE}" > /etc/timezone
-
-
-
-
