@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  grafana:
+    container_name: gitbook
+    image: nasus/gitbook
+    volumes:
+      - ./:/app
+    command: /bin/bash -c "echo 'hello world' > /listen.txt && tail -f /listen.txt"
+    ports:
+      - 4000:4000

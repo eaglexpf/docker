@@ -1,5 +1,13 @@
 # docker
 
+## 运行一个临时容器用来测试
+```
+docker run --rm -it <image_name> <command>
+```
+例如:
+```
+docker run --rm -it alpine:3.17 /bin/sh
+```
 
 ## 替换源
 
