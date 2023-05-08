@@ -19,12 +19,13 @@ FROM alpine:3.17 as production-stage
 
 LABEL maintainer="eaglexpf <1121252990@qq.com>"
 
-ENV TIMEZONE=${timezone:-"Asia/Shanghai"} \
+ENV TZ=Asia/Shanghai \
 	ETCD_VERSION=3.5.0
 
-COPY --from=build-stage /etcd-${ETCD_VERSION}/bin/* /usr/local/bin
+RUN apk add --no-cache tzdata \
+    && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
-RUN export PATH="$PATH:/usr/local/etcd"
+COPY --from=build-stage /etcd-${ETCD_VERSION}/bin/* /usr/local/bin
 
 EXPOSE 2379 2380
 
