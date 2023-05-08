@@ -1,7 +1,8 @@
 FROM golang:1.20-alpine3.17 as build-stage
 
 RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct \
-	&& go install github.com/shadowsocks/go-shadowsocks2@latest
+	&& go install github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server@latest \
+	&& go install github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local@latest
 
 FROM alpine:3.17 as production-stage
 
