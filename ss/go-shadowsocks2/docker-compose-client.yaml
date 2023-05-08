@@ -4,8 +4,6 @@ services:
   ss-client:
     container_name: ss-client
     image: nasus/go-ss2
-    volumes:
-      - ./config.json:/config.json
     ports:
       - 1080:1080
-    command: go-shadowsocks2 -c /config.json
+    command: go-shadowsocks2 -c 'ss://AEAD_CHACHA20_POLY1305:your-password@[server_address]:8488' -verbose -socks :1080 
