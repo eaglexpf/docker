@@ -24,7 +24,7 @@ RUN yum install -y wget \
 	&& cd ../ \
 	# install perl
 	# && wget https://www.cpan.org/src/5.0/perl-${PERL_VERSION}.tar.gz \
-	&& wget http//mirrors.8ac.cc:5080/tsung/perl-${PERL_VERSION}.tar.gz \
+	&& wget http://mirrors.8ac.cc:5080/tsung/perl-${PERL_VERSION}.tar.gz \
 	&& yum remove -y perl && yum -y install gcc cpan \
 	&& tar xzf perl-${PERL_VERSION}.tar.gz \
 	&& cd perl-${PERL_VERSION} \
@@ -34,7 +34,7 @@ RUN yum install -y wget \
 	&& cd ../ \
 	# install tsung
 	# && wget http://tsung.erlang-projects.org/dist/tsung-${TSUNG_VERSION}.tar.gz \
-	&& wget http//mirrors.8ac.cc:5080/tsung/ptsung-${TSUNG_VERSION}.tar.gz \
+	&& wget http://mirrors.8ac.cc:5080/tsung/tsung-${TSUNG_VERSION}.tar.gz \
 	&& tar xzf tsung-${TSUNG_VERSION}.tar.gz \
 	&& cd tsung-${TSUNG_VERSION} \
 	&& ./configure \
@@ -44,7 +44,7 @@ RUN yum install -y wget \
 	# install Template
 	&& yum -y install gnuplot perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker perl-Template-Toolkit \
 	# && wget https://www.cpan.org/modules/by-module/Template/Template-${TEMPLATE_VERSION}.tar.gz \
-	&& wget http//mirrors.8ac.cc:5080/tsung/Template-${TEMPLATE_VERSION}.tar.gz \
+	&& wget http://mirrors.8ac.cc:5080/tsung/Template-${TEMPLATE_VERSION}.tar.gz \
 	&& tar xzf Template-${TEMPLATE_VERSION}.tar.gz \
 	&& cd Template-${TEMPLATE_VERSION} \
 	&& perl Makefile.PL \
