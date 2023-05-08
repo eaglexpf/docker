@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  ss-server:
+    container_name: ss-server
+    image: nasus/go-ss
+    volumes:
+      - ./config.json:/config.json
+    ports:
+      - 28387:28387
+    command: shadowsocks-server -c /config.json

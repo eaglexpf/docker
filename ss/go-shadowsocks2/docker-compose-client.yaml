@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  ss-client:
+    container_name: ss-client
+    image: nasus/go-ss2
+    volumes:
+      - ./config.json:/config.json
+    ports:
+      - 1080:1080
+    command: go-shadowsocks2 -c /config.json
