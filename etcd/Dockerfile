@@ -22,7 +22,8 @@ LABEL maintainer="eaglexpf <1121252990@qq.com>"
 ENV TZ=Asia/Shanghai \
 	ETCD_VERSION=3.5.0
 
-RUN apk add --no-cache tzdata \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && apk update \
+    && apk add --no-cache tzdata \
     && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
 COPY --from=build-stage /etcd-${ETCD_VERSION}/bin/* /usr/local/bin
