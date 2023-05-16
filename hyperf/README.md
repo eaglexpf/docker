@@ -1,0 +1,1 @@
+mirrors的memcached apk包未开启sasl
