@@ -31,7 +31,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 	&& cd /data \
 	&& wget https://github.com/JinnLynn/genpac/archive/refs/tags/v2.0.1.tar.gz \
 	&& tar -zxvf v2.0.1.tar.gz \
-	&& cd /genpac \
+	&& cd genpac-2.0.1 \
     && python3.8 setup.py install \
     && apk del wget ca-certificates gnupg libffi-dev openssl-dev build-base zlib-dev \
     && rm /data/v2.0.1.tar.gz \
