@@ -19,17 +19,22 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 	# 设置时区
     && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone \
     # 安装python3.8
+    && mkdir /data && cd /data \
 	&& apk add wget ca-certificates gnupg libffi-dev openssl-dev build-base zlib-dev \
 	&& wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz \
 	&& tar -zxvf Python-3.8.12.tgz \
 	&& cd Python-3.8.12 \
 	&& ./configure --enable-optimizations \
 	&& make altinstall \
+	&& rm /data/Python-3.8.12.tgz \
 	# 安装genpac
-	&& git clone https://github.com/JinnLynn/genpac.git /genpac \
+	&& cd /data \
+	&& wget https://github.com/JinnLynn/genpac/archive/refs/tags/v2.0.1.tar.gz \
+	&& tar -zxvf v2.0.1.tar.gz \
 	&& cd /genpac \
     && python3.8 setup.py install \
     && apk del wget ca-certificates gnupg libffi-dev openssl-dev build-base zlib-dev \
+    && rm /data/v2.0.1.tar.gz \
     # 清理工作
     && apk del git \
     && rm -rf /var/cache/apk/* \
