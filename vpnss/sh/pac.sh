@@ -1,9 +1,5 @@
 #!/bin/bash
 
-/usr/bin/supervisord -c /etc/supervisord.conf
-
-sleep 10
-
 ip=$(ifconfig ppp0 | grep "inet " | awk '{print $2}' | sed 's/addr://')
 
 if [ -n "$ENV_SS_CLIENT" ]; then
@@ -13,5 +9,5 @@ if [ -n "$ENV_SS_CLIENT" ]; then
 
 fi
 
-echo "http://$ip/gfwlist.pac" > /start.txt
-tail -f /start.txt
+echo "http://$ip/gfwlist.pac"
+echo "sudo route -n add 192.168.0.0/16 $ip"
