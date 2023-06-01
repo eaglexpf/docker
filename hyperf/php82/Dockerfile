@@ -48,21 +48,10 @@ RUN set -ex \
     php82-pcntl \
     php82-opcache \
     php82-pecl-redis \
+    php82-pecl-memcached \
     php82-pecl-mongodb \
     php82-pecl-swoole \
     && ln -sf /usr/bin/php82 /usr/bin/php \
-    # install memcached
-    && apk add --no-cache libmemcached-dev cyrus-sasl-dev gcc make autoconf libc-dev \
-    && wget -O memcached.tar.gz https://pecl.php.net/get/memcached-3.2.0.tgz \
-    && mkdir -p /usr/src/memcached \
-    && tar -xzf memcached.tar.gz -C /usr/src/memcached --strip-components=1 \
-    && rm memcached.tar.gz \
-    && cd /usr/src/memcached \
-    && phpize82 \
-    && ./configure --enable-memcached-sasl --enable-memcached-igbinary --enable-memcached-json \
-    && make && make install \
-    && echo "extension=memcached" > /etc/php82/conf.d/90_memcached.ini \
-    && echo "memcached.use_sasl=1" >> /etc/php82/conf.d/90_memcached.ini \
     # config composer
     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
     # config php
