@@ -10,7 +10,6 @@ RUN set -ex \
     && apk add --upgrade --no-cache \
     ca-certificates \
     curl \
-    composer \
     wget \
     tar \
     xz \
@@ -53,6 +52,8 @@ RUN set -ex \
     php82-pecl-swoole \
     && ln -sf /usr/bin/php82 /usr/bin/php \
     # config composer
+    && curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/bin/composer \
     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
     # config php
     && { \
