@@ -9,6 +9,6 @@
 ![](./docs/datasource2.png)
 ![](./docs/datasource3.png)
 2. 引入node-exporter模板【可以在[prometheus官网](https://grafana.com/grafana/dashboards/?search=node-exporter)中搜索相关模板】
-![](./docs/databoard1.png)
-![](./docs/databoard2.png)
-![](./docs/databoard3.png)
+![](./docs/dashboard1.png)
+![](./docs/dashboard2.png)
+![](./docs/dashboard3.png)
