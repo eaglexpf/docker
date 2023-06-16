@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  monitor-prometheus:
+    container_name: monitor-prometheus
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+  monitor-node-exporter:
+    container_name: monitor-node-exporter
+    image: prom/node-exporter
+    ports:
+      - 9100:9100
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+  monitor-grafana:
+    container_name: monitor-grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000
