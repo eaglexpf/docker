@@ -4,6 +4,7 @@ services:
   monitor-prometheus:
     container_name: monitor-prometheus
     image: prom/prometheus
+    restart: always
     ports:
       - 9090:9090
     volumes:
@@ -11,6 +12,7 @@ services:
   monitor-node-exporter:
     container_name: monitor-node-exporter
     image: prom/node-exporter
+    restart: always
     ports:
       - 9100:9100
     volumes:
@@ -20,5 +22,6 @@ services:
   monitor-grafana:
     container_name: monitor-grafana
     image: grafana/grafana
+    restart: always
     ports:
       - 3000:3000
