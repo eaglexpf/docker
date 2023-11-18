@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  samba:
+    image: dperson/samba
+    container_name: dperson-samba
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - ./data:/mount
+    command: '-u "xpf;123456" -s "xpf;/mount/;yes;no;yes;all;all;all"'
