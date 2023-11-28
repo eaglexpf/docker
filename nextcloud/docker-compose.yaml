@@ -16,6 +16,8 @@ services:
   app:
     image: nextcloud:fpm
     restart: always
+    privileged: true
+    user: root
     volumes:
       - ./data/nextcloud:/var/www/html
     environment:
