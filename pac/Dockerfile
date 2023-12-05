@@ -12,7 +12,7 @@ RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct \
 	&& go install github.com/shadowsocks/go-shadowsocks2@latest \
 	# 安装pac相关服务
 	&& sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && apk update \
-    && apk add tzdata curl nginx nginx-mod-http-lua supervisor bash \
+    && apk add tzdata curl nginx supervisor bash \
 	# 设置时区
     && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone \
     # 安装python3.8
