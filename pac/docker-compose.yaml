@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  pac:
+    image: nasus/pac
+    container_name: pac
+    restart: always
+    env_file:
+      - ./pac.env
+    ports:
+      - 80:80
+      - 1080:1080

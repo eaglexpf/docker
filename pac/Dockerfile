@@ -4,11 +4,15 @@ LABEL maintainer="eaglexpf <1121252990@qq.com>"
 
 ENV TZ=Asia/Shanghai
 
-RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct \
-	&& go install github.com/shadowsocks/go-shadowsocks2@latest
+ADD ./sh /sh
+ADD ./supervisor /etc/supervisor.d
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && apk update \
-    && apk add tzdata git nginx supervisor curl \
+# 安装ss
+RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct \
+	&& go install github.com/shadowsocks/go-shadowsocks2@latest \
+	# 安装pac相关服务
+	&& sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && apk update \
+    && apk add tzdata curl nginx nginx-mod-http-lua supervisor bash \
 	# 设置时区
     && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone \
     # 安装python3.8
@@ -29,11 +33,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && apk del wget ca-certificates gnupg libffi-dev openssl-dev build-base zlib-dev \
     && rm /data/v2.0.1.tar.gz \
     # 清理工作
-    && apk del git \
     && rm -rf /var/cache/apk/* \
     && chmod -R 755 /sh
-
-ADD ./sh /sh
-ADD ./supervisor /etc/supervisor.d
 
 CMD /usr/bin/supervisord -n -c /etc/supervisord.conf
