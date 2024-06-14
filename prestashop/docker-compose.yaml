@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: prestashop-db
+    hostname: prestashop-db
+    volumes:
+      - ./prestashop/db:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: prestashopuser
+      MYSQL_PASSWORD: prestashoppass
+      MYSQL_DATABASE: prestashop
+
+  prestashop:
+    image: prestashop/prestashop:latest
+    container_name: PrestaShop
+    hostname: prestashop
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+    volumes:
+      - ./prestashop/data:/var/www/html:rw
+    environment:
+      DB_SERVER: prestashop-db
+      DB_NAME: prestashop
+      DB_USER: prestashopuser
+      DB_PASSWD: prestashoppass
+    depends_on:
+      - db
+    links:
+      - db:prestashop-db

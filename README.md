@@ -38,6 +38,7 @@ RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/source
 docker login
 
 docker build -t [name] .
+docker buildx build -t [name] --platform linux/amd64,linux/arm64 . --push
 docker push [name]
 
 docker run -it [name] /bin/bash

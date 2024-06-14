@@ -12,7 +12,11 @@ services:
       - MYSQL_PASSWORD=123456
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./data/redis:/data
   app:
     image: nextcloud:fpm
     restart: always
@@ -25,6 +29,8 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
+      - REDIS_HOST=redis
+      - REDIS_HOST_PORT=6379
 
   web:
     image: nginx

@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  rancher:
+    container_name: rancher
+    image: rancher/rancher
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - 80:80
+      - 443:443
